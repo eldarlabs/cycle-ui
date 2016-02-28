@@ -1,0 +1,44 @@
+{
+  "name": "@eldarlabs/cycle-ui",
+  "version": "0.0.1",
+  "description": "Cycle UI Components library",
+  "author": "Eldar Labs",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldarlabs/cycle-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eldarlabs/cycle-ui/issues"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "typings": "typings",
+    "prepublish": "typings install && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@cycle/core": "^6.0.0",
+    "@cycle/dom": "^8.1.0",
+    "@cycle/isolate": "^1.2.x",
+    "classnames": "2.2.1",
+    "lodash": "^4.5.0",
+    "react-toolbox": "^0.14.1",
+    "rx": "^4.0.7"
+  },
+  "devDependencies": {
+    "typescript": "~1.9.0-dev.20160205",
+    "typings": "~0.6.8"
+  },
+  "keywords": [
+    "cycle.js",
+    "components",
+    "reactive",
+    "rxjs",
+    "rx",
+    "mvi",
+    "typescript"
+  ],
+  "homepage": "https://github.com/eldarlabs/cycle-ui#readme"
+}

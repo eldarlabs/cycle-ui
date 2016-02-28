@@ -1,0 +1,9 @@
+node_modules/
+typings/
+cache/
+dist/
+*.js
+*.d.ts
+*.log.*
+*.log
+*.tgz
