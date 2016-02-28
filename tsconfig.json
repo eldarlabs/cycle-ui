@@ -1,16 +1,24 @@
 {
 	"compilerOptions": {
-	  "allowJs": true,
+	  "declaration": true,
+		"allowJs": false,
 		"experimentalDecorators": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"noImplicitAny": true,
+		"noImplicitAny": false,
+		"allowSyntheticDefaultImports": true,
+		"suppressImplicitAnyIndexErrors": false,
 		"outDir": "dist",
+		"sourceMap": true,
+		"removeComments": false,
 		"target": "es5"
 	},
 	"files": [
+		"globals.d.ts",
 		"typings/main.d.ts",
-
 		"src/index.ts"
+	],
+	"exclude": [
+		"node_modules"
 	]
 }

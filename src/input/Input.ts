@@ -1,8 +1,11 @@
 import { Observable } from 'rx';
-import { h, div, span, input, label } from '@cycle/dom';
-import classNames from 'classnames';
+//import { h, div, span, input, label } from '@cycle/dom';
+const { h, div, span, input, label } = require('@cycle/dom');
+
+import * as classNames from 'classnames';
 //import FontIcon from '../font_icon';
-import style from 'react-toolbox/lib/input/style';
+//import style from 'react-toolbox/lib/input/style';
+const style = require('react-toolbox/lib/input/style');
 import { defaults } from 'lodash';
 
 // interface InputProps {

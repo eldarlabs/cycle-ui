@@ -1,8 +1,10 @@
 import { Observable } from 'rx';
-import { div } from '@cycle/dom';
-import classNames from 'classnames';
+//import { div } = require('@cycle/dom');
+const { div } = require('@cycle/dom');
+import * as classNames from 'classnames';
 //import style from './style';
-import style from 'react-toolbox/lib/radio/style';
+//import style from 'react-toolbox/lib/radio/style';
+const style = require('react-toolbox/lib/radio/style');
 import { defaults } from 'lodash';
 //import Ripple from '../ripple';
 

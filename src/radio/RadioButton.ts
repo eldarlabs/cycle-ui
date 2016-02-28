@@ -1,10 +1,11 @@
 import { Observable } from 'rx';
-import { span, input, label } from '@cycle/dom';
-import classNames from 'classnames';
+//import { span, input, label } from '@cycle/dom';
+const { div, input, label, span } = require('@cycle/dom');
+import * as classNames from 'classnames';
 import { Radio } from './Radio';
-import Input from '../Input';
 //import style from './style';
-import style from 'react-toolbox/lib/radio/style';
+//import style from 'react-toolbox/lib/radio/style';
+const style = require('react-toolbox/lib/radio/style');
 import { defaults } from 'lodash';
 
 export function RadioButton(sources, props) {
