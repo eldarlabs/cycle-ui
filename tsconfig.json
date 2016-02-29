@@ -8,7 +8,7 @@
 		"noImplicitAny": false,
 		"allowSyntheticDefaultImports": true,
 		"suppressImplicitAnyIndexErrors": false,
-		"outDir": "dist",
+		"outDir": "lib",
 		"sourceMap": true,
 		"removeComments": false,
 		"target": "es5"

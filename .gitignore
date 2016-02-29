@@ -2,6 +2,7 @@ node_modules/
 typings/
 cache/
 dist/
+lib/
 *.js
 *.d.ts
 *.log.*
