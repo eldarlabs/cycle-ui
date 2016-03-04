@@ -9,7 +9,7 @@ Cycle.js components. Currently using the Material Design styles from react-toolb
 How to use
 ----------
 
-Note: I want to bring a proposal to Cycle-DOM to allow removal of the .DOM boilerplate. 
+Note: I want to bring a proposal to Cycle-DOM to allow removal of the .DOM boilerplate.
 
     // Import components you want to use
     import { Input, RadioButton } from '@eldarlabs/cycle-ui';
@@ -21,8 +21,7 @@ Note: I want to bring a proposal to Cycle-DOM to allow removal of the .DOM boile
       Input(sources, {
           label: `Answer to life`,
           maxLength: 50,
-        },
-      ).DOM,
+      }).DOM,
       RadioButton(sources, {
         label: 'Radio easy',
         checked: true,
@@ -34,8 +33,9 @@ Note: I want to bring a proposal to Cycle-DOM to allow removal of the .DOM boile
 Related projects
 ----------------
 
-- [Cycle.js](http://cycle.js.org) required to use the cycle-ui components.
-- [React Toolbox Components](http://react-toolbox.com/#/components) uses these styles
+- [cycle-ui-typescript-webpack](https://github.com/eldarlabs/cycle-ui-typescript-webpack) - Starter project using Cycle-UI, TypeScript and WebPack.
+- [Cycle.js](http://cycle.js.org) - required to use the cycle-ui components.
+- [React Toolbox Components](http://react-toolbox.com/#/components) - uses these styles
 
 License
 =======

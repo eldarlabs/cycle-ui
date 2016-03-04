@@ -2,7 +2,7 @@
   "name": "@eldarlabs/cycle-ui",
   "version": "0.0.4",
   "description": "Cycle UI Components library",
-  "author": "Eldar Labs",
+  "author": "Eldar Labs (https://eldarlabs.com)",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
