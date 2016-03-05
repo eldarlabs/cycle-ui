@@ -1,9 +1,5 @@
 import { Observable } from 'rx';
-//import { div } = require('@cycle/dom');
 const { div } = require('@cycle/dom');
-import * as classNames from 'classnames';
-//import style from './style';
-//import style from 'react-toolbox/lib/radio/style';
 const style = require('react-toolbox/lib/radio/style');
 import { defaults } from 'lodash';
 //import Ripple from '../ripple';
@@ -23,7 +19,6 @@ export function Radio(sources, props) {
   const props$ = Observable.just(props);
 //  const { DOM } = sources;
 
-  const value$ = Observable.just(1);
   //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 
@@ -37,7 +32,6 @@ export function Radio(sources, props) {
 
   return {
     DOM: vtree$,
-//    value$,
   };
 };
 

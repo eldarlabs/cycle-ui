@@ -1,6 +1,6 @@
 import { Observable } from 'rx';
 //import { span, input, label } from '@cycle/dom';
-const { div, input, label, span } = require('@cycle/dom');
+const { input, label, span } = require('@cycle/dom');
 import * as classNames from 'classnames';
 import { Radio } from './Radio';
 //import style from './style';
@@ -20,7 +20,6 @@ export function RadioButton(sources, props) {
 
   //TODO: make a helper to check if an observable is already passed
   const props$ = Observable.just(props);
-  const { DOM } = sources;
 
   const value$ = Observable.just(1);
   const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
@@ -29,7 +28,7 @@ export function RadioButton(sources, props) {
 
     //TODO: split input into a new function
     //TODO: make an equivalent of data-react-toolbox='radio-button' for div?
-    return label({ className: className,}, [
+    return label({ className: className }, [
       input({
         className: style.input,
         readonly: props.readonly,
@@ -41,7 +40,6 @@ export function RadioButton(sources, props) {
         type: 'radio'
       }),
       Radio(sources, {
-      //Input(sources, {
         checked: props.checked,
         disabled: props.disabled,
       }).DOM,
@@ -51,8 +49,8 @@ export function RadioButton(sources, props) {
         }, [
           props.label
         ]),
-      ]): null,
-    ])
+      ]) : null,
+    ]);
   });
 
   return {

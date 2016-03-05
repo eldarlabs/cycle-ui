@@ -1,35 +1,41 @@
 import { Observable } from 'rx';
-//import { h, div, span, input, label } from '@cycle/dom';
-const { h, div, span, input, label } = require('@cycle/dom');
+// import { h, div, span, input, label } from '@cycle/dom';
+const { h, div, span, label } = require('@cycle/dom');
 
 import * as classNames from 'classnames';
-//import FontIcon from '../font_icon';
-//import style from 'react-toolbox/lib/input/style';
+// import FontIcon from '../font_icon';
+// import style from 'react-toolbox/lib/input/style';
 const style = require('react-toolbox/lib/input/style');
 import { defaults } from 'lodash';
 
-// interface InputProps {
-//   label?: string;
-// }
-
-//   static propTypes = {
-//     children: React.PropTypes.any,
-//     className: React.PropTypes.string,
-//     disabled: React.PropTypes.bool,
-//     error: React.PropTypes.string,
-//     floating: React.PropTypes.bool,
-//     icon: React.PropTypes.any,
-//     label: React.PropTypes.string,
-//     maxLength: React.PropTypes.number,
-//     multiline: React.PropTypes.bool,
-//     onBlur: React.PropTypes.func,
-//     onChange: React.PropTypes.func,
-//     onFocus: React.PropTypes.func,
-//     onKeyPress: React.PropTypes.func,
-//     required: React.PropTypes.bool,
-//     type: React.PropTypes.string,
-//     value: React.PropTypes.any
-//   };
+export interface InputProps {
+  label?: string;
+  floating?: boolean;
+  values?: any;
+  className?: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  error?: string;
+  maxLength?: number;
+  multiline?: boolean;
+  required?: boolean;
+  type?: string;
+  initial?: any;
+  icon?: any;
+  readonly?: boolean;
+  autocapitalize?: boolean;
+  autocomplete?: boolean;
+  autocorrect?: boolean;
+  autofocus?: boolean;
+  list?: any;
+  max?: number;
+  min?: number;
+  name?: string;
+  pattern?: string;
+  placeholder?: string;
+  size?: number;
+  step?: number;
+}
 
 //   blur () {
 //     this.refs.input.blur();
@@ -39,7 +45,7 @@ import { defaults } from 'lodash';
 //     this.refs.input.focus();
 //   }
 
-export function Input(sources, props) {
+export function Input(sources: any, props: InputProps) {
 
   defaults(props, {
     className: '',
@@ -50,9 +56,9 @@ export function Input(sources, props) {
     type: 'text'
   });
 
-  //TODO: helper: default to isolate function, but allow function override
+  // TODO: helper: default to isolate function, but allow function override
 
-  //TODO: make a helper to check if an observable is already passed
+  // TODO: make a helper to check if an observable is already passed
   const props$ = Observable.just(props);
   const { DOM } = sources;
 
@@ -60,9 +66,9 @@ export function Input(sources, props) {
   const value$ = props$.flatMap((props) => {
     let newValues$ = null;
     if (props.values === undefined) {
-      //TODO: use input or some other event. react-toolbox seems to use change
-      //but that does not update the count for max length as you type
-      //TODO: use a better selector
+      // TODO: use input or some other event. react-toolbox seems to use change
+      // but that does not update the count for max length as you type
+      // TODO: use a better selector
       newValues$ = DOM.select('input').events('input').map(ev => ev.target.value);
     } else {
       newValues$ = props.values;
@@ -85,8 +91,8 @@ export function Input(sources, props) {
       [style.withIcon]: props.icon
     }, props.className);
 
-    //TODO: split input into a new function
-    //TODO: make an equivalent of data-react-toolbox='input' for div?
+    // TODO: split input into a new function
+    // TODO: make an equivalent of data-react-toolbox='input' for div?
     return div({
       className: divClassName,
       }, [
@@ -103,8 +109,8 @@ export function Input(sources, props) {
         autocorrect: props.autocorrect,
         autofocus: props.autofocus,
         value,
-        disabled: props.isDisabled,
-        invalid: props.isInvalid,
+        disabled: props.disabled,
+        invalid: props.invalid,
         list: props.list,
         max: props.max,
         min: props.min,
@@ -116,16 +122,16 @@ export function Input(sources, props) {
         step: props.step,
         type: props.type,
       }),
-      //TODO: icon
-      //props.icon ? <FontIcon className={style.icon} value={icon} /> : null}
+      // TODO: icon
+      // props.icon ? <FontIcon className={style.icon} value={icon} /> : null}
       span({className: style.bar}),
       props.label ?
         label({
           className: labelClassName
-        }, props.label): null,
+        }, props.label) : null,
       props.error ? span({ className: style.error }) : null,
       props.maxLength ? span({ className: style.counter }, `${length} / ${props.maxLength}`) : null,
-    ])
+    ]);
   });
 
   return {
@@ -133,5 +139,3 @@ export function Input(sources, props) {
     value$,
   };
 }
-
-//export default Input;
