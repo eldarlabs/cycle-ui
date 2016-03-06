@@ -1,24 +1,30 @@
 import { Observable } from 'rx';
 const { div } = require('@cycle/dom');
 const style = require('react-toolbox/lib/radio/style');
-import { defaults } from 'lodash';
+import { defaultProps } from '../helpers/defaultProps';
+const isolate = require('@cycle/isolate');
 //import Ripple from '../ripple';
 
-export function Radio(sources, props) {
+// TODO: check these props
+export interface RadioProps {
+  checked?: boolean;
+  className?: string;
+  disabled?: boolean;
+};
 
+export function Radio(sources, props) {
   //TODO: make defaults or use parents?
-  defaults(props, {
+  const props$: Observable<RadioProps> = defaultProps(props, {
     checked: false,
     className: '',
     disabled: false,
   });
 
-  //TODO: helper: default to isolate function, but allow function override
+  // Enforce isolation for now, otherwise Inputs all show the same data
+  return isolate(makeRadio)(sources, props$);
+}
 
-  //TODO: make a helper to check if an observable is already passed
-  const props$ = Observable.just(props);
-//  const { DOM } = sources;
-
+function makeRadio(sources: any, props$: Observable<RadioProps>) {
   //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 

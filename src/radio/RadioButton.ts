@@ -6,21 +6,30 @@ import { Radio } from './Radio';
 //import style from './style';
 //import style from 'react-toolbox/lib/radio/style';
 const style = require('react-toolbox/lib/radio/style');
-import { defaults } from 'lodash';
+import { defaultProps } from '../helpers/defaultProps';
+const isolate = require('@cycle/isolate');
+
+// TODO: check these props
+export interface RadioButtonProps {
+  checked?: boolean;
+  className?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  label?: string;
+};
 
 export function RadioButton(sources, props) {
-
-  defaults(props, {
+  const props$: Observable<RadioButtonProps> = defaultProps(props, {
     checked: false,
     className: '',
     disabled: false,
   });
 
-  //TODO: helper: default to isolate function, but allow function override
+  // Enforce isolation for now, otherwise Inputs all show the same data
+  return isolate(makeRadioButton)(sources, props$);
+}
 
-  //TODO: make a helper to check if an observable is already passed
-  const props$ = Observable.just(props);
-
+function makeRadioButton(sources: any, props$: Observable<RadioButtonProps>) {
   const value$ = Observable.just(1);
   const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
 

@@ -1,12 +1,11 @@
 import { Observable } from 'rx';
-// import { h, div, span, input, label } from '@cycle/dom';
 const { h, div, span, label } = require('@cycle/dom');
 
 import * as classNames from 'classnames';
 // import FontIcon from '../font_icon';
-// import style from 'react-toolbox/lib/input/style';
 const style = require('react-toolbox/lib/input/style');
-import { defaults } from 'lodash';
+import { defaultProps } from '../helpers/defaultProps';
+const isolate = require('@cycle/isolate');
 
 export interface InputProps {
   label?: string;
@@ -45,9 +44,9 @@ export interface InputProps {
 //     this.refs.input.focus();
 //   }
 
-export function Input(sources: any, props: InputProps) {
+export function Input(sources: Object, props: InputProps): any {
 
-  defaults(props, {
+  const props$: Observable<InputProps> = defaultProps(props, {
     className: '',
     disabled: false,
     floating: true,
@@ -56,10 +55,11 @@ export function Input(sources: any, props: InputProps) {
     type: 'text'
   });
 
-  // TODO: helper: default to isolate function, but allow function override
+  // Enforce isolation for now, otherwise Inputs all show the same data
+  return isolate(makeImport)(sources, props$);
+}
 
-  // TODO: make a helper to check if an observable is already passed
-  const props$ = Observable.just(props);
+function makeImport(sources: any, props$: Observable<InputProps>) {
   const { DOM } = sources;
 
   //TODO: make a helper
