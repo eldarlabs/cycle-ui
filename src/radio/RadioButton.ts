@@ -1,6 +1,6 @@
 import { Observable } from 'rx';
 //import { span, input, label } from '@cycle/dom';
-const { input, label, span } = require('@cycle/dom');
+const { div, input, label, span } = require('@cycle/dom');
 import * as classNames from 'classnames';
 import { Radio } from './Radio';
 //import style from './style';
@@ -8,6 +8,7 @@ import { Radio } from './Radio';
 const style = require('react-toolbox/lib/radio/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
+const combineLatestObj = require('rx-combine-latest-obj');
 
 // TODO: check these props
 export interface RadioButtonProps {
@@ -16,92 +17,86 @@ export interface RadioButtonProps {
   disabled?: boolean;
   readonly?: boolean;
   label?: string;
+  value?: any;
 };
 
-export function RadioButton(sources, props) {
+export function RadioButton(sources: any, props) {
   const props$: Observable<RadioButtonProps> = defaultProps(props, {
     checked: false,
     className: '',
     disabled: false,
   });
 
-  // Enforce isolation for now, otherwise Inputs all show the same data
+  // Enforce isolation for now, unless I find a better way to localize selects
   return isolate(makeRadioButton)(sources, props$);
 }
 
-function makeRadioButton(sources: any, props$: Observable<RadioButtonProps>) {
-  const value$ = Observable.just(1);
-  const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
+function intent(DOM) {
+  const radioLabelClick$ = DOM.select('span').events('click');
+  const radioClick$ = DOM.select('input').events('click');
+  const itemMouseClick$ = radioLabelClick$.merge(radioClick$).startWith('first')
+    .do(x => console.log(x));
+  return { itemMouseClick$ };
+}
 
-    const className = classNames(style[props.disabled ? 'disabled' : 'field'], props.className);
+function model(props$: Observable<RadioButtonProps>, actions) {
+  const clickedValue$ = Observable.combineLatest(actions.itemMouseClick$, props$, (click, props) => props.value)
+     .do(x => console.log('clickedValue ' + x));
+
+  const radioGroupValue$ = Observable.just('RadioHard');
+  const checked$ = Observable.combineLatest(props$, clickedValue$, radioGroupValue$, (props, clickedValue, radioGroupValue) => {
+    return !props.disabled && (clickedValue === radioGroupValue);
+  })
+  .do(x => console.log('checked ' + x));
+
+  return combineLatestObj({clickedValue$, props$, checked$ });
+}
+
+function view(sources, state$) {
+  return state$.map( ({props, checked} ) => {
+
+    const className = classNames('radioButton', style[props.disabled ? 'disabled' : 'field'], props.className);
+    const inputClassName = classNames('radioInput', style.input);
 
     //TODO: split input into a new function
     //TODO: make an equivalent of data-react-toolbox='radio-button' for div?
-    return label({ className: className }, [
-      input({
-        className: style.input,
-        readonly: props.readonly,
-        //TODO: which version?
-        // attributes: {
-        //   readonly: props.readonly,
-        // },
-        ref: 'input',
-        type: 'radio'
-      }),
-      Radio(sources, {
-        checked: props.checked,
-        disabled: props.disabled,
-      }).DOM,
-      props.label ? label([
-        span({
-          className: style.text
-        }, [
-          props.label
-        ]),
-      ]) : null,
+    return div([
+      label({ className: className }, [
+        input({
+          className: inputClassName,
+          readonly: props.readonly,
+          //TODO: which version?
+          // attributes: {
+          //   readonly: props.readonly,
+          // },
+          type: 'radio'
+        }),
+        Radio(sources, {
+          checked: checked,
+          disabled: props.disabled,
+        }).DOM,
+        props.label ? label([
+          span({
+            className: style.text
+          }, [
+            props.label
+          ]),
+        ]) : null,
+      ]),
     ]);
   });
+}
+
+function makeRadioButton(sources: any, props$: Observable<RadioButtonProps>) {
+  const { DOM } = sources;
+
+  const actions = intent(DOM);
+  const state$ = model(props$, actions);
+  const vtree$ = view(sources, state$);
 
   return {
     DOM: vtree$,
-//    value$,
+    value$: state$.value$,
   };
 
 }
-
-// class RadioButton extends React.Component {
-//   static propTypes = {
-//     checked: React.PropTypes.bool,
-//     className: React.PropTypes.string,
-//     disabled: React.PropTypes.bool,
-//     label: React.PropTypes.string,
-//     name: React.PropTypes.string,
-//     onBlur: React.PropTypes.func,
-//     onChange: React.PropTypes.func,
-//     onFocus: React.PropTypes.func,
-//     value: React.PropTypes.any
-//   };
-//
-//   static defaultProps = {
-//     checked: false,
-//     className: '',
-//     disabled: false
-//   };
-
-  //
-  // handleClick = (event) => {
-  //   const {checked, disabled, onChange} = this.props;
-  //   if (event.pageX !== 0 && event.pageY !== 0) this.blur();
-  //   if (!disabled && !checked && onChange) onChange(event, this);
-  // };
-  //
-  // blur () {
-  //   this.refs.input.blur();
-  // }
-  //
-  // focus () {
-  //   this.refs.input.focus();
-  // }
-  //
-
-//export default RadioButton;

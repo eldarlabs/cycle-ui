@@ -1,9 +1,10 @@
 {
+  "main": "/lib/index.d.ts",
   "dependencies": {},
   "ambientDependencies": {
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#8287192198a14bcb31533afe381aa24ac7eed4c6",
-    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#f696b8c0c2d6e2a31c794a3752f68de85dce4c2b",
-    "rx": "https://raw.githubusercontent.com/Reactive-Extensions/RxJS/a1f10de40007e360d556e6efae5ac7e7af2b4b62/ts/rx.d.ts",
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#48c1e3c1d6baefa4f1a126f188c27c4fefd36bff"
+    "lodash": "registry:dt/lodash#3.10.0+20160127144039",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#48c1e3c1d6baefa4f1a126f188c27c4fefd36bff",
+    "rx": "https://raw.githubusercontent.com/Reactive-Extensions/RxJS/a1f10de40007e360d556e6efae5ac7e7af2b4b62/ts/rx.d.ts"
   }
 }

@@ -1,7 +1,7 @@
 import { defaults } from 'lodash';
 import { Observable } from 'rx';
 
-export function defaultProps(props: any, defaultProps: Object): Observable<Object> {
+export function defaultProps<T>(props: any, defaultProps: T): Observable<T> {
   // TODO: possibly get functional and use Maybe?
   // if props are null or undefined
   if (props == null) {
