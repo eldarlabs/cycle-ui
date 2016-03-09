@@ -1,5 +1,4 @@
 {
-  "main": "/lib/index.d.ts",
   "dependencies": {},
   "ambientDependencies": {
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#8287192198a14bcb31533afe381aa24ac7eed4c6",
