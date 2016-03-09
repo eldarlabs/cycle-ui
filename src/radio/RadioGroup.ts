@@ -14,7 +14,7 @@ export interface RadioGroupProps {
   value?: any;
 };
 
-export function RadioGroup(sources, props, childrenProps: Array<RadioButtonProps>) {
+export function RadioGroup(sources, props?, childrenProps?: Array<RadioButtonProps>) {
   //console.log(childrenProps);
   const props$: Observable<RadioGroupProps> = defaultProps(props, {
     className: '',

@@ -20,7 +20,7 @@ export interface RadioButtonProps {
   value?: any;
 };
 
-export function RadioButton(sources: any, props) {
+export function RadioButton(sources: any, props?) {
   const props$: Observable<RadioButtonProps> = defaultProps(props, {
     checked: false,
     className: '',

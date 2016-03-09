@@ -44,7 +44,7 @@ export interface InputProps {
 //     this.refs.input.focus();
 //   }
 
-export function Input(sources: Object, props: InputProps): any {
+export function Input(sources: Object, props?: InputProps): any {
 
   const props$: Observable<InputProps> = defaultProps(props, {
     className: '',
