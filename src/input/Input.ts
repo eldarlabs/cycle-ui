@@ -1,10 +1,10 @@
 import { Observable } from 'rx';
 const { h, div, span, label } = require('@cycle/dom');
-
 import * as classNames from 'classnames';
 // import FontIcon from '../font_icon';
 const style = require('react-toolbox/lib/input/style');
 import { defaultProps } from '../helpers/defaultProps';
+import { CycleDomComponent } from '../helpers/cycleDomComponent';
 const isolate = require('@cycle/isolate');
 
 export interface InputProps {
@@ -36,15 +36,7 @@ export interface InputProps {
   step?: number;
 }
 
-//   blur () {
-//     this.refs.input.blur();
-//   }
-
-//   focus () {
-//     this.refs.input.focus();
-//   }
-
-export function Input(sources: Object, props?: InputProps): any {
+export function Input(sources: Object, props?: InputProps): CycleDomComponent {
 
   const props$: Observable<InputProps> = defaultProps(props, {
     className: '',
@@ -59,7 +51,7 @@ export function Input(sources: Object, props?: InputProps): any {
   return isolate(makeImport)(sources, props$);
 }
 
-function makeImport(sources: any, props$: Observable<InputProps>) {
+function makeImport(sources: any, props$: Observable<InputProps>): CycleDomComponent {
   const { DOM } = sources;
 
   //TODO: make a helper
@@ -133,7 +125,6 @@ function makeImport(sources: any, props$: Observable<InputProps>) {
       props.maxLength ? span({ className: style.counter }, `${length} / ${props.maxLength}`) : null,
     ]);
   });
-
   return {
     DOM: vtree$,
     value$,

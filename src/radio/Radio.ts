@@ -4,6 +4,7 @@ const style = require('react-toolbox/lib/radio/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 //import Ripple from '../ripple';
+import { CycleDomComponent } from '../helpers/cycleDomComponent';
 
 // TODO: check these props
 export interface RadioProps {
@@ -12,7 +13,7 @@ export interface RadioProps {
   disabled?: boolean;
 };
 
-export function Radio(sources, props?) {
+export function Radio(sources, props?): CycleDomComponent {
   //TODO: make defaults or use parents?
   const props$: Observable<RadioProps> = defaultProps(props, {
     checked: false,
@@ -24,7 +25,7 @@ export function Radio(sources, props?) {
   return isolate(makeRadio)(sources, props$);
 }
 
-function makeRadio(sources: any, props$: Observable<RadioProps>) {
+function makeRadio(sources: any, props$: Observable<RadioProps>): CycleDomComponent {
   //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 

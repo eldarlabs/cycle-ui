@@ -1,14 +1,12 @@
 import { Observable } from 'rx';
-//import { span, input, label } from '@cycle/dom';
 const { div, input, label, span } = require('@cycle/dom');
 import * as classNames from 'classnames';
 import { Radio } from './Radio';
-//import style from './style';
-//import style from 'react-toolbox/lib/radio/style';
 const style = require('react-toolbox/lib/radio/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 const combineLatestObj = require('rx-combine-latest-obj');
+import { CycleDomComponent } from '../helpers/cycleDomComponent';
 
 // TODO: check these props
 export interface RadioButtonProps {
@@ -20,7 +18,11 @@ export interface RadioButtonProps {
   value?: any;
 };
 
-export function RadioButton(sources: any, props?) {
+export interface RadioButton extends CycleDomComponent {
+  value$: Observable<string>;
+}
+
+export function RadioButton(sources: any, props?): RadioButton {
   const props$: Observable<RadioButtonProps> = defaultProps(props, {
     checked: false,
     className: '',
@@ -45,6 +47,7 @@ function model(props$: Observable<RadioButtonProps>, actions) {
 
   const radioGroupValue$ = Observable.just('RadioHard');
   const checked$ = Observable.combineLatest(props$, clickedValue$, radioGroupValue$, (props, clickedValue, radioGroupValue) => {
+    //TODO: does this stop having a disabled and checked, not just initial state?
     return !props.disabled && (clickedValue === radioGroupValue);
   })
   .do(x => console.log('checked ' + x));
@@ -87,7 +90,7 @@ function view(sources, state$) {
   });
 }
 
-function makeRadioButton(sources: any, props$: Observable<RadioButtonProps>) {
+function makeRadioButton(sources: any, props$: Observable<RadioButtonProps>): RadioButton {
   const { DOM } = sources;
 
   const actions = intent(DOM);
