@@ -1,5 +1,8 @@
-deployment:
-  staging:
-    branch: master
-    commands:
-      - npm run semantic-release
+machine:
+  node:
+    version: "0.12"
+test:
+  override:
+    - npm test
+  post:
+    - npm run semantic-release || true
