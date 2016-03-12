@@ -18,7 +18,8 @@
     "tscw": "tsc --watch",
     "typings": "typings",
     "prepublish": "typings install && tsc",
-    "test": "mocha src/index.test.js -w",
+    "test": "mocha src/index.test.js",
+    "testw": "mocha src/index.test.js -w",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "czConfig": {
