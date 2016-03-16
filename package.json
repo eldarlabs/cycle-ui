@@ -25,7 +25,9 @@
     "verifyConditions": "condition-circle"
   },
   "config": {
-    "ghooks": { "pre-commit": "npm run test" },
+    "ghooks": {
+      "pre-commit": "npm run test"
+    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
@@ -48,7 +50,7 @@
     "ghooks": "1.0.3",
     "mocha": "^2.4.5",
     "semantic-release": "^4.3.5",
-    "typescript": "1.8.7",
+    "typescript": "1.8.9",
     "typings": "0.7.5"
   },
   "keywords": [
