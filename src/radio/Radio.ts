@@ -32,9 +32,9 @@ function makeRadio(sources: any, props$: Observable<RadioProps>): CycleDomCompon
     const className = style[props.checked ? 'radio-checked' : 'radio'];
 
     //TODO: make an equivalent of data-react-toolbox='radio' for div?
-    return div({
-        className: className,
-    });
+    return (
+      div( { className } )
+    );
   });
 
   return {

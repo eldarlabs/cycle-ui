@@ -63,30 +63,32 @@ function view(sources, state$) {
 
     //TODO: split input into a new function
     //TODO: make an equivalent of data-react-toolbox='radio-button' for div?
-    return div([
-      label({ className: className }, [
-        input({
-          className: inputClassName,
-          readonly: props.readonly,
-          //TODO: which version?
-          // attributes: {
-          //   readonly: props.readonly,
-          // },
-          type: 'radio'
-        }),
-        Radio(sources, {
-          checked: checked,
-          disabled: props.disabled,
-        }).DOM,
-        props.label ? label([
-          span({
-            className: style.text
-          }, [
-            props.label
-          ]),
-        ]) : null,
-      ]),
-    ]);
+    return (
+      div([
+        label({ className }, [
+          input({
+            className: inputClassName,
+            readonly: props.readonly,
+            //TODO: which version?
+            // attributes: {
+            //   readonly: props.readonly,
+            // },
+            type: 'radio'
+          }),
+          Radio(sources, {
+            checked: checked,
+            disabled: props.disabled,
+          }).DOM,
+          props.label ? label([
+            span({
+              className: style.text
+            }, [
+              props.label
+            ]),
+          ]) : null,
+        ]),
+      ])
+    );
   });
 }
 

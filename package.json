@@ -1,5 +1,6 @@
 {
   "name": "@eldarlabs/cycle-ui",
+  "version": "0.0.0-semantically-released-after-ci-build",
   "description": "Cycle UI Components library",
   "author": "Eldar Labs (https://eldarlabs.com)",
   "license": "MIT",

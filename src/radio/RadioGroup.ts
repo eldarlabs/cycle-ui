@@ -49,8 +49,11 @@ function makeRadioGroup(sources: any, props$: Observable<RadioGroupProps>, child
 
     const className = classNames('radioGroup', props.className);
     //return div(props.className);
-    return div( { className },
-      [childrenDOMs]);
+    return (
+      div( { className },
+        [childrenDOMs]
+      )
+    );
   });
 
   return {
