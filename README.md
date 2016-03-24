@@ -7,6 +7,8 @@ eldarlabs/cycle-ui
 
 A Cycle.js HTML component library.
 
+##[Demonstration Site](http://eldarlabs.github.io/cycle-ui-typescript-webpack/)
+
 An **experimental work in progress** conversion of react-toolbox components to
 Cycle.js components. Currently using the Material Design styles from react-toolbox that are written with PostCSS. Future work may define an interface for interchangeable styles.
 
