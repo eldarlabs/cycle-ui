@@ -26,7 +26,9 @@
     "verifyConditions": "condition-circle"
   },
   "config": {
-    "ghooks": { "pre-commit": "npm run test" },
+    "ghooks": {
+      "pre-commit": "npm run test"
+    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
@@ -40,7 +42,7 @@
     "@cycle/core": "6.0.0",
     "@cycle/dom": "9.1.0",
     "@cycle/isolate": "1.2.0",
-    "react-toolbox": "0.14.0",
+    "react-toolbox": "0.15.0",
     "rx": "4.1.0"
   },
   "devDependencies": {
