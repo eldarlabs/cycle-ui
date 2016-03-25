@@ -4,7 +4,7 @@ import * as classNames from 'classnames';
 // import FontIcon from '../font_icon';
 const style = require('react-toolbox/lib/input/style');
 import { defaultProps } from '../helpers/defaultProps';
-import { CycleDomComponent } from '../helpers/cycleDomComponent';
+import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
 const isolate = require('@cycle/isolate');
 
 export interface InputProps {

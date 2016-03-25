@@ -4,7 +4,7 @@ const style = require('react-toolbox/lib/radio/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 //import Ripple from '../ripple';
-import { CycleDomComponent } from '../helpers/cycleDomComponent';
+import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
 
 // TODO: check these props
 export interface RadioProps {

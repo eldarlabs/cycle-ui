@@ -7,7 +7,7 @@ const style = require('react-toolbox/lib/radio/style');
 /* tslint:enable */
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
-import { CycleDomComponent } from '../helpers/cycleDomComponent';
+import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
 
 // TODO: check these props
 export interface RadioGroupProps {

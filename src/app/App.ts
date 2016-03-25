@@ -3,7 +3,7 @@ const { div } = require('@cycle/dom');
 import * as classNames from 'classnames';
 const style = require('react-toolbox/lib/app/style');
 import { defaultProps } from '../helpers/defaultProps';
-import { CycleDomComponent } from '../helpers/cycleDomComponent';
+import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
 //const isolate = require('@cycle/isolate');
 
 export interface AppProps {

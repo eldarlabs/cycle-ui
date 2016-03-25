@@ -3,7 +3,7 @@ const { div } = require('@cycle/dom');
 const style = require('react-toolbox/lib/card/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
-import { CycleDomComponent } from '../helpers/cycleDomComponent';
+import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
 export interface CardProps {

@@ -5,7 +5,7 @@ import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 //import FontIcon from '../font_icon';
 //import Ripple from '../ripple';
-import { CycleDomComponent } from '../helpers/cycleDomComponent';
+import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
 // TODO: check these props
