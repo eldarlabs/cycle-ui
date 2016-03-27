@@ -17,8 +17,9 @@ export interface RadioGroupProps {
   value?: any;
 };
 
-export function RadioGroup(sources, props?, childrenProps?: Array<RadioButtonProps>): CycleDomComponent {
-  //console.log(childrenProps);
+export function RadioGroup(sources: any, props?: RadioGroupProps,
+                           childrenProps?: Array<RadioButtonProps>):
+                           CycleDomComponent {
   const props$: Observable<RadioGroupProps> = defaultProps(props, {
     className: '',
     disabled: false,
@@ -28,13 +29,15 @@ export function RadioGroup(sources, props?, childrenProps?: Array<RadioButtonPro
   return isolate(makeRadioGroup)(sources, props$, childrenProps);
 }
 
-function makeRadioGroup(sources: any, props$: Observable<RadioGroupProps>, childrenProps: Array<RadioButtonProps>): CycleDomComponent {
-  const childrenDOMs = [];
+function makeRadioGroup(sources: any, props$: Observable<RadioGroupProps>,
+                        childrenProps: Array<RadioButtonProps>): CycleDomComponent {
+  const childrenDOMs: any[] = [];
   const childrenValues: Observable<any>[] = [];
   for (let childProps of childrenProps) {
     //console.log('child' + childProps);
     let childRadio = RadioButton(sources, childProps);
-    //TODO: maybe remove RadioButton interface if I can make value$ compile using CycleDomComponent interface
+    // TODO: maybe remove RadioButton interface if I can make value$ compile using CycleDomComponent
+    // interface
     childrenValues.push(childRadio.value$);
     childrenDOMs.push(childRadio.DOM);
   }

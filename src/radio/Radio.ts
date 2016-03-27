@@ -13,7 +13,7 @@ export interface RadioProps {
   disabled?: boolean;
 };
 
-export function Radio(sources, props?): CycleDomComponent {
+export function Radio(sources: any, props?: RadioProps): CycleDomComponent {
   //TODO: make defaults or use parents?
   const props$: Observable<RadioProps> = defaultProps(props, {
     checked: false,

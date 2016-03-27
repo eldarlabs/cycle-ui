@@ -22,7 +22,7 @@ export interface RadioButton extends CycleDomComponent {
   value$: Observable<string>;
 }
 
-export function RadioButton(sources: any, props?): RadioButton {
+export function RadioButton(sources: any, props?: RadioButtonProps): RadioButton {
   const props$: Observable<RadioButtonProps> = defaultProps(props, {
     checked: false,
     className: '',
@@ -33,20 +33,22 @@ export function RadioButton(sources: any, props?): RadioButton {
   return isolate(makeRadioButton)(sources, props$);
 }
 
-function intent(DOM) {
+function intent(DOM: any) {
   const radioLabelClick$ = DOM.select('span').events('click');
   const radioClick$ = DOM.select('input').events('click');
   const itemMouseClick$ = radioLabelClick$.merge(radioClick$).startWith('first')
-    .do(x => console.log(x));
+    .do((x: any) => console.log(x));
   return { itemMouseClick$ };
 }
 
-function model(props$: Observable<RadioButtonProps>, actions) {
-  const clickedValue$ = Observable.combineLatest(actions.itemMouseClick$, props$, (click, props) => props.value)
-     .do(x => console.log('clickedValue ' + x));
+function model(props$: Observable<RadioButtonProps>, actions: any) {
+  const clickedValue$ = Observable.combineLatest(
+    actions.itemMouseClick$, props$, (click, props) => props.value)
+    .do(x => console.log('clickedValue ' + x));
 
   const radioGroupValue$ = Observable.just('RadioHard');
-  const checked$ = Observable.combineLatest(props$, clickedValue$, radioGroupValue$, (props, clickedValue, radioGroupValue) => {
+  const checked$ = Observable.combineLatest(props$, clickedValue$, radioGroupValue$,
+      (props, clickedValue, radioGroupValue) => {
     //TODO: does this stop having a disabled and checked, not just initial state?
     return !props.disabled && (clickedValue === radioGroupValue);
   })
@@ -55,10 +57,11 @@ function model(props$: Observable<RadioButtonProps>, actions) {
   return combineLatestObj({clickedValue$, props$, checked$ });
 }
 
-function view(sources, state$) {
+function view(sources: any, state$: any) {
   return state$.map( ({props, checked} ) => {
 
-    const className = classNames('radioButton', style[props.disabled ? 'disabled' : 'field'], props.className);
+    const className = classNames('radioButton', style[props.disabled ? 'disabled' : 'field'],
+      props.className);
     const inputClassName = classNames('radioInput', style.input);
 
     //TODO: split input into a new function

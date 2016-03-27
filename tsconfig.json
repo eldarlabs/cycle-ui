@@ -1,10 +1,12 @@
 {
 	"compilerOptions": {
 	  "declaration": true,
+	  "preserveConstEnums": true,
+		"noEmitHelpers": true,
 		"experimentalDecorators": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"noImplicitAny": false,
+		"noImplicitAny": true,
 		"allowSyntheticDefaultImports": true,
 		"suppressImplicitAnyIndexErrors": false,
 		"outDir": "lib",

@@ -11,12 +11,14 @@ export interface CardTitleProps {
   //: TODO need to figure out how to define an element in Cycle.js
   avatar?: string | CycleComponent; // element
   className?: string;
-  children?: string | Array<CycleComponent> | CycleComponent;
+  //children?: string | Array<CycleComponent> | CycleComponent;
   subtitle?: string | CycleComponent;
   title?: string | CycleComponent;
 };
 
-export function CardTitle(sources, props?, children?): CycleDomComponent {
+export function CardTitle(sources: any, props?: CardTitleProps,
+                          children?: string | Array<CycleComponent> | CycleComponent):
+                          CycleDomComponent {
   const props$: Observable<CardTitleProps> = defaultProps(props, {
     className: '',
   });
@@ -25,7 +27,9 @@ export function CardTitle(sources, props?, children?): CycleDomComponent {
   return isolate(makeCardTitle)(sources, props$, children);
 }
 
-function makeCardTitle(sources: any, props$: Observable<CardTitleProps>, children): CycleDomComponent {
+function makeCardTitle(sources: any, props$: Observable<CardTitleProps>,
+                       children: string | Array<CycleComponent> | CycleComponent):
+                       CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     //TODO: do Avatars at some point
@@ -46,15 +50,15 @@ function makeCardTitle(sources: any, props$: Observable<CardTitleProps>, childre
     const titleDOM = props.title &&
       h5(`.${style.title}`, [props.title]);
 
-    const childrenAsStringDOM = props.children && typeof props.children === 'string' &&
+    const childrenAsStringDOM = children && typeof children === 'string' &&
       h5(`.${style.title}`,
-        [props.children]
+        [children]
       );
 
     const subtitleDOM = props.subtitle &&
       p(`.${style.subtitle}`, [props.subtitle]);
 
-    const childrenAsArray = props.children && typeof children !== 'string' &&
+    const childrenAsArray = children && typeof children !== 'string' &&
       [children];
 
     return (

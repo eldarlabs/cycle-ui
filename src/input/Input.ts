@@ -36,7 +36,7 @@ export interface InputProps {
   step?: number;
 }
 
-export function Input(sources: Object, props?: InputProps): CycleDomComponent {
+export function Input(sources: any, props?: InputProps): CycleDomComponent {
 
   const props$: Observable<InputProps> = defaultProps(props, {
     className: '',
@@ -56,12 +56,13 @@ function makeImport(sources: any, props$: Observable<InputProps>): CycleDomCompo
 
   //TODO: make a helper
   const value$ = props$.flatMap((props) => {
-    let newValues$ = null;
+    let newValues$: Observable<any> = null;
     if (props.values === undefined) {
       // TODO: use input or some other event. react-toolbox seems to use change
       // but that does not update the count for max length as you type
       // TODO: use a better selector
-      newValues$ = DOM.select('input').events('input').map(ev => ev.target.value);
+      newValues$ = DOM.select('input').events('input').
+        map( (ev: Event) => (<HTMLInputElement>ev.target).value);
     } else {
       newValues$ = props.values;
     }

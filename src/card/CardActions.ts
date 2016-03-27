@@ -11,7 +11,7 @@ export interface CardActionsProps {
   children?: Array<CycleComponent>;
 };
 
-export function CardActions(sources, props?, children?): CycleDomComponent {
+export function CardActions(sources: any, props?: CardActionsProps, children?: Array<CycleComponent>): CycleDomComponent {
   const props$: Observable<CardActionsProps> = defaultProps(props, {
     className: '',
   });
@@ -20,7 +20,7 @@ export function CardActions(sources, props?, children?): CycleDomComponent {
   return isolate(makeCardActions)(sources, props$, children);
 }
 
-function makeCardActions(sources: any, props$: Observable<CardActionsProps>, children): CycleDomComponent {
+function makeCardActions(sources: any, props$: Observable<CardActionsProps>, children: Array<CycleComponent>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const className = classNames(style.cardActions, props.className);

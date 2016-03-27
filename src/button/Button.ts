@@ -5,7 +5,7 @@ import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 //import FontIcon from '../font_icon';
 //import Ripple from '../ripple';
-import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
+import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
 // TODO: check these props
@@ -28,7 +28,7 @@ export interface ButtonProps {
   type?: string;
 };
 
-export function Button(sources, props?, children?): CycleDomComponent {
+export function Button(sources: any, props?: ButtonProps, children?: Array<CycleComponent>): CycleDomComponent {
   const props$: Observable<ButtonProps> = defaultProps(props, {
     accent: false,
     className: '',
@@ -44,7 +44,7 @@ export function Button(sources, props?, children?): CycleDomComponent {
   return isolate(makeButton)(sources, props$, children);
 }
 
-function makeButton(sources: any, props$: Observable<ButtonProps>, children): CycleDomComponent {
+function makeButton(sources: any, props$: Observable<ButtonProps>, children: Array<CycleComponent>): CycleDomComponent {
   //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 

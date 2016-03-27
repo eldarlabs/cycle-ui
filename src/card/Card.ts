@@ -3,7 +3,7 @@ const { div } = require('@cycle/dom');
 const style = require('react-toolbox/lib/card/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
-import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
+import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
 export interface CardProps {
@@ -11,7 +11,7 @@ export interface CardProps {
   raised?: boolean;
 };
 
-export function Card(sources, props?, children?): CycleDomComponent {
+export function Card(sources: any, props?: CardProps, children?: Array<CycleComponent>): CycleDomComponent {
   const props$: Observable<CardProps> = defaultProps(props, {
     className: '',
     raised: false
@@ -21,7 +21,7 @@ export function Card(sources, props?, children?): CycleDomComponent {
   return isolate(makeCard)(sources, props$, children);
 }
 
-function makeCard(sources: any, props$: Observable<CardProps>, children): CycleDomComponent {
+function makeCard(sources: any, props$: Observable<CardProps>, children: Array<CycleComponent>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const className = classNames(style.card, {

@@ -8,10 +8,11 @@ import * as classNames from 'classnames';
 
 export interface CardTextProps {
   className?: string;
-  children?: string | Array<CycleComponent>;
+  //children?: string | Array<CycleComponent>;
 };
 
-export function CardText(sources, props?, children?): CycleDomComponent {
+export function CardText(sources: any, props?: CardTextProps,
+                         children?: string | Array<CycleComponent>): CycleDomComponent {
   const props$: Observable<CardTextProps> = defaultProps(props, {
     className: '',
   });
@@ -20,7 +21,8 @@ export function CardText(sources, props?, children?): CycleDomComponent {
   return isolate(makeCardText)(sources, props$, children);
 }
 
-function makeCardText(sources: any, props$: Observable<CardTextProps>, children): CycleDomComponent {
+function makeCardText(sources: any, props$: Observable<CardTextProps>,
+                      children: string | Array<CycleComponent>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const className = classNames(style.cardText, props.className);

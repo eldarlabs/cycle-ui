@@ -3,7 +3,6 @@ typings/
 cache/
 dist/
 lib/
-*.d.ts
 *.log.*
 *.log
 *.tgz
