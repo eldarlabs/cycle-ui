@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { div } = require('@cycle/dom');
+const { div } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/radio/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
@@ -33,7 +33,7 @@ function makeRadio(sources: any, props$: Observable<RadioProps>): CycleDomCompon
 
     //TODO: make an equivalent of data-react-toolbox='radio' for div?
     return (
-      div( { className } )
+      div( { props: { className } } )
     );
   });
 

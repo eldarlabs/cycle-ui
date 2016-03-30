@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { div, p } = require('@cycle/dom');
+const { div, p } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/card/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
@@ -28,8 +28,8 @@ function makeCardText(sources: any, props$: Observable<CardTextProps>,
     const className = classNames(style.cardText, props.className);
     console.log(children);
     return (
-      div({ className },
-        typeof children === 'string' ? p([children]) : [children]
+      div( { props: { className } },
+        typeof children === 'string' ? p(children) : children
       )
     );
   });

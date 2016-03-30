@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { h, span } = require('@cycle/dom');
+const { h, span } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/button/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
@@ -44,13 +44,15 @@ export function Button(sources: any, props?: ButtonProps, children?: Array<Cycle
   return isolate(makeButton)(sources, props$, children);
 }
 
-function makeButton(sources: any, props$: Observable<ButtonProps>, children: Array<CycleComponent>): CycleDomComponent {
+function makeButton(sources: any, props$: Observable<ButtonProps>, children: Array<CycleComponent>):
+                    CycleDomComponent {
   //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 
     const element = props.href ? 'a' : 'button';
     const level = props.primary ? 'primary' : props.accent ? 'accent' : 'neutral';
-    const shape = props.flat ? 'flat' : props.raised ? 'raised' : props.floating ? 'floating' : 'flat';
+    const shape = props.flat ? 'flat' : props.raised ? 'raised' : props.floating ?
+      'floating' : 'flat';
 
     const className = classNames([style[shape]], {
       [style[level]]: props.neutral,
@@ -60,14 +62,13 @@ function makeButton(sources: any, props$: Observable<ButtonProps>, children: Arr
 
     //TODO: make an equivalent of data-react-toolbox='radio' for div?
     return (
-      h(element, {
-        className,
+      h(element, { props: { className } }, [
         //icon ? <FontIcon className={style.icon} value={icon}/> : null,
         //label: props.label
-      }, [
-        props.label ?
-          span([props.label]) : null,
-        , [children]
+      // ,
+        props.label &&
+          span(props.label),
+        children
       ])
     );
   });

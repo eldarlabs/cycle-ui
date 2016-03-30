@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { div } = require('@cycle/dom');
+const { div } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 const style = require('react-toolbox/lib/app/style');
 import { defaultProps } from '../helpers/defaultProps';
@@ -24,10 +24,8 @@ function makeApp(props$: Observable<AppProps>, children?: any): CycleDomComponen
 
     const className = classNames(style.root, props.className);
 
-    return div({
-        className,
-      },
-      [children]);
+    return div( { props: { className } },
+      children);
   });
 
   return {

@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { div } = require('@cycle/dom');
+const { div } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 import { RadioButton, RadioButtonProps } from './RadioButton';
 /* tslint:disable: no-unused-variable */
@@ -51,10 +51,10 @@ function makeRadioGroup(sources: any, props$: Observable<RadioGroupProps>,
       .do(x => console.log('radioGroupSelectedValue ' + x));
 
     const className = classNames('radioGroup', props.className);
-    //return div(props.className);
+
     return (
-      div( { className },
-        [childrenDOMs]
+      div( { props: { className } },
+        childrenDOMs
       )
     );
   });

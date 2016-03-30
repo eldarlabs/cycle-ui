@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { div } = require('@cycle/dom');
+const { div } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/card/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
@@ -30,15 +30,10 @@ function makeCard(sources: any, props$: Observable<CardProps>, children: Array<C
 
     return (
       div({
-        //TODO: Not sure why this only works if I define class twice!
-        className,
-        attributes: {
-          'class': className,
-          'data-cycle-ui': 'card',
-        }
-      }
-      ,
-      [children]
+          props: { className },
+          attrs: { 'data-cycle-ui': 'card' }
+        },
+        children
       )
     );
   });

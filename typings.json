@@ -1,5 +1,7 @@
 {
-  "dependencies": {},
+  "dependencies": {
+    "cycle-snabbdom": "file:src/types/cycle-dom.d.ts"
+  },
   "ambientDependencies": {
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#8287192198a14bcb31533afe381aa24ac7eed4c6",
     "lodash": "registry:dt/lodash#3.10.0+20160127144039",

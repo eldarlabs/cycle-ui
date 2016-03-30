@@ -1,10 +1,11 @@
 import { Observable } from 'rx';
-const { div, h5, p } = require('@cycle/dom');
+const { div, h5, p } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/card/style');
 import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
+import { concat } from 'lodash';
 //import { Avatar } from '../avatar';
 
 export interface CardTitleProps {
@@ -46,37 +47,37 @@ function makeCardTitle(sources: any, props$: Observable<CardTitleProps>,
       // [style.small]: props.avatar,
       // [style.large]: !props.avatar
     }, props.className);
-
     const titleDOM = props.title &&
-      h5(`.${style.title}`, [props.title]);
+      h5(`.${style.title}`, props.title);
 
     const childrenAsStringDOM = children && typeof children === 'string' &&
       h5(`.${style.title}`,
-        [children]
+        children
       );
 
     const subtitleDOM = props.subtitle &&
-      p(`.${style.subtitle}`, [props.subtitle]);
+      p(`.${style.subtitle}`, props.subtitle);
 
     const childrenAsArray = children && typeof children !== 'string' &&
-      [children];
+      children;
 
     return (
-      div({
-          className,
-        },
-        //TODO: Avatars
-        // {avatarComponent && (
-        //   <div className={style.avatar}>
-        //     {avatarComponent}
-        //   </div>
-        // )}
-        div(
+      div( { props: { className } }, [
+        div(concat(
           titleDOM,
           childrenAsStringDOM,
           subtitleDOM,
           childrenAsArray
-        )
+        )),
+      ]
+      // [
+      //   //TODO: Avatars
+      //   // {avatarComponent && (
+      //   //   <div className={style.avatar}>
+      //   //     {avatarComponent}
+      //   //   </div>
+      //   // )}
+      // ]
       )
     );
   });

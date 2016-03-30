@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { h, div, span, label } = require('@cycle/dom');
+const { h, div, span, label } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 // import FontIcon from '../font_icon';
 const style = require('react-toolbox/lib/input/style');
@@ -87,42 +87,44 @@ function makeImport(sources: any, props$: Observable<InputProps>): CycleDomCompo
     // TODO: split input into a new function
     // TODO: make an equivalent of data-react-toolbox='input' for div?
     return (
-      div( { className: divClassName, }, [
+      div( { props: { className: divClassName } }, [
         h(props.multiline ? 'textarea' : 'input', {
-          className,
-          attributes: {
+          props: {
+            className,
+            autocapitalize: props.autocapitalize,
+            autocomplete: props.autocomplete,
+            autocorrect: props.autocorrect,
+            autofocus: props.autofocus,
+            value,
+            disabled: props.disabled,
+            invalid: props.invalid,
+            list: props.list,
+            max: props.max,
+            min: props.min,
+            name: props.name,
+            pattern: props.pattern,
+            placeholder: props.placeholder,
+            required: props.required,
+            size: props.size,
+            step: props.step,
+            type: props.type,
+          },
+          attrs: {
             maxlength: props.maxLength,
             readonly: props.readonly,
-          },
-          ref: 'input',
-          role: 'input',
-          autocapitalize: props.autocapitalize,
-          autocomplete: props.autocomplete,
-          autocorrect: props.autocorrect,
-          autofocus: props.autofocus,
-          value,
-          disabled: props.disabled,
-          invalid: props.invalid,
-          list: props.list,
-          max: props.max,
-          min: props.min,
-          name: props.name,
-          pattern: props.pattern,
-          placeholder: props.placeholder,
-          required: props.required,
-          size: props.size,
-          step: props.step,
-          type: props.type,
+          }
         }),
         // TODO: icon
         // props.icon ? <FontIcon className={style.icon} value={icon} /> : null}
-        span({className: style.bar}),
-        props.label ?
-          label({
-            className: labelClassName
-          }, props.label) : null,
-        props.error ? span({ className: style.error }) : null,
-        props.maxLength ? span({ className: style.counter }, `${length} / ${props.maxLength}`) : null,
+        span( { props: { className: style.bar } } ),
+        props.label &&
+          label( { props: { className: labelClassName } },
+            props.label),
+        props.error &&
+          span( { props: { className: style.error } } ),
+        props.maxLength &&
+          span( { props: { className: style.counter } },
+            `${length} / ${props.maxLength}`),
       ])
     );
   });

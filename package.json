@@ -29,20 +29,22 @@
     "verifyConditions": "condition-circle"
   },
   "config": {
-    "ghooks": { "pre-commit": "npm run test" },
+    "ghooks": {
+      "pre-commit": "npm run test"
+    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
   },
   "dependencies": {
-    "classnames": "2.2.3",
-    "lodash": "4.6.0",
-    "rx-combine-latest-obj": "1.0.2"
+    "classnames": "^2.2.3",
+    "lodash": "^4.6.0",
+    "rx-combine-latest-obj": "^1.0.2"
   },
   "peerDependencies": {
     "@cycle/core": "6.0.0",
-    "@cycle/dom": "9.1.0",
     "@cycle/isolate": "1.2.0",
+    "cycle-snabbdom": "1.2.0",
     "react-toolbox": "0.14.0",
     "rx": "4.1.0"
   },
@@ -52,8 +54,8 @@
     "ghooks": "1.0.3",
     "mocha": "^2.4.5",
     "semantic-release": "^4.3.5",
-    "typescript": "1.8.7",
-    "typings": "0.7.5"
+    "typescript": "^1.8.7",
+    "typings": "0.7.9"
   },
   "keywords": [
     "cycle.js",

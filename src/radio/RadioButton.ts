@@ -1,5 +1,5 @@
 import { Observable } from 'rx';
-const { div, input, label, span } = require('@cycle/dom');
+const { div, input, label, span } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 import { Radio } from './Radio';
 const style = require('react-toolbox/lib/radio/style');
@@ -68,27 +68,27 @@ function view(sources: any, state$: any) {
     //TODO: make an equivalent of data-react-toolbox='radio-button' for div?
     return (
       div([
-        label({ className }, [
-          input({
+        label( { props: { className } }, [
+          input( { props: {
             className: inputClassName,
-            readonly: props.readonly,
             //TODO: which version?
             // attributes: {
             //   readonly: props.readonly,
             // },
+            readonly: props.readonly,
             type: 'radio'
-          }),
+          },
+          attrs: {
+          }}),
           Radio(sources, {
             checked: checked,
             disabled: props.disabled,
           }).DOM,
-          props.label ? label([
-            span({
-              className: style.text
-            }, [
+          props.label && label([
+            span( { props: { className: style.text } },
               props.label
-            ]),
-          ]) : null,
+            ),
+          ]),
         ]),
       ])
     );
