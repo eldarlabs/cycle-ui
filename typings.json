@@ -4,7 +4,7 @@
   },
   "ambientDependencies": {
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#8287192198a14bcb31533afe381aa24ac7eed4c6",
-    "lodash": "registry:dt/lodash#3.10.0+20160127144039",
+    "lodash": "registry:dt/lodash#3.10.0+20160330154726",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#48c1e3c1d6baefa4f1a126f188c27c4fefd36bff",
     "rx": "https://raw.githubusercontent.com/Reactive-Extensions/RxJS/a1f10de40007e360d556e6efae5ac7e7af2b4b62/ts/rx.d.ts"
   }

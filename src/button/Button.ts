@@ -28,7 +28,8 @@ export interface ButtonProps {
   type?: string;
 };
 
-export function Button(sources: any, props?: ButtonProps, children?: Array<CycleComponent>): CycleDomComponent {
+export function Button(sources: any, props?: ButtonProps, children?: Array<CycleComponent>):
+    CycleDomComponent {
   const props$: Observable<ButtonProps> = defaultProps(props, {
     accent: false,
     className: '',

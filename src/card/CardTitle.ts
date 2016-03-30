@@ -5,7 +5,8 @@ import { defaultProps } from '../helpers/defaultProps';
 const isolate = require('@cycle/isolate');
 import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
-import { concat } from 'lodash';
+//import { concat } from 'lodash';
+const { concat } = require('lodash');
 //import { Avatar } from '../avatar';
 
 export interface CardTitleProps {

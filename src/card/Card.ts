@@ -11,7 +11,8 @@ export interface CardProps {
   raised?: boolean;
 };
 
-export function Card(sources: any, props?: CardProps, children?: Array<CycleComponent>): CycleDomComponent {
+export function Card(sources: any, props?: CardProps, children?: Array<CycleComponent>):
+    CycleDomComponent {
   const props$: Observable<CardProps> = defaultProps(props, {
     className: '',
     raised: false
@@ -21,7 +22,8 @@ export function Card(sources: any, props?: CardProps, children?: Array<CycleComp
   return isolate(makeCard)(sources, props$, children);
 }
 
-function makeCard(sources: any, props$: Observable<CardProps>, children: Array<CycleComponent>): CycleDomComponent {
+function makeCard(sources: any, props$: Observable<CardProps>, children: Array<CycleComponent>):
+    CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const className = classNames(style.card, {
