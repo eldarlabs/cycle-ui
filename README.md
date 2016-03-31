@@ -2,6 +2,7 @@ eldarlabs/cycle-ui
 ====
 [![circleci build](https://circleci.com/gh/eldarlabs/cycle-ui.svg?style=shield)](https://circleci.com/gh/eldarlabs/cycle-ui)
 [![version](https://img.shields.io/npm/v/@eldarlabs/cycle-ui.svg)](http://npm.im/@eldarlabs/cycle-ui)
+[![bitHound Overall Score](https://www.bithound.io/github/eldarlabs/cycle-ui/badges/score.svg)](https://www.bithound.io/github/eldarlabs/cycle-ui)
 [![MIT License](https://img.shields.io/npm/l/starwars-names.svg)](https://raw.githubusercontent.com/eldarlabs/cycle-ui/master/LICENSE)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
