@@ -8,7 +8,6 @@ import * as classNames from 'classnames';
 
 export interface CardTextProps {
   className?: string;
-  //children?: string | Array<CycleComponent>;
 };
 
 export function CardText(sources: any, props?: CardTextProps,

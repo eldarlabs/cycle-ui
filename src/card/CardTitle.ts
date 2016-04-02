@@ -10,10 +10,8 @@ const { concat } = require('lodash');
 //import { Avatar } from '../avatar';
 
 export interface CardTitleProps {
-  //: TODO need to figure out how to define an element in Cycle.js
-  avatar?: string | CycleComponent; // element
+  avatar?: string | CycleComponent;
   className?: string;
-  //children?: string | Array<CycleComponent> | CycleComponent;
   subtitle?: string | CycleComponent;
   title?: string | CycleComponent;
 };

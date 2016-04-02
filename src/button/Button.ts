@@ -14,7 +14,6 @@ export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   accent?: boolean;
-  //children: React.PropTypes.node,
   flat?: boolean;
   floating?: boolean;
   href?: string;
@@ -47,7 +46,6 @@ export function Button(sources: any, props?: ButtonProps, children?: Array<Cycle
 
 function makeButton(sources: any, props$: Observable<ButtonProps>, children: Array<CycleComponent>):
                     CycleDomComponent {
-  //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 
     const element = props.href ? 'a' : 'button';

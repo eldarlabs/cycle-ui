@@ -1,6 +1,3 @@
-// export { Input } from './input';
-// export { RadioButton } from './radio';
-// export { RadioGroup } from './radio';
 export { App } from './app/index';
 export { Button } from './button/index';
 export { Card, CardTitle, CardText, CardActions } from './card/index';

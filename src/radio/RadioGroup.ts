@@ -34,7 +34,6 @@ function makeRadioGroup(sources: any, props$: Observable<RadioGroupProps>,
   const childrenDOMs: any[] = [];
   const childrenValues: Observable<any>[] = [];
   for (let childProps of childrenProps) {
-    //console.log('child' + childProps);
     let childRadio = RadioButton(sources, childProps);
     // TODO: maybe remove RadioButton interface if I can make value$ compile using CycleDomComponent
     // interface

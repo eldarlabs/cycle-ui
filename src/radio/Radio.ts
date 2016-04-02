@@ -26,7 +26,6 @@ export function Radio(sources: any, props?: RadioProps): CycleDomComponent {
 }
 
 function makeRadio(sources: any, props$: Observable<RadioProps>): CycleDomComponent {
-  //const vtree$ = Observable.combineLatest(props$, value$, (props, value) => {
   const vtree$ = props$.map( (props) => {
 
     const className = style[props.checked ? 'radio-checked' : 'radio'];
