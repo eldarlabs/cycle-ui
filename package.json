@@ -65,6 +65,8 @@
     "rxjs",
     "rx",
     "mvi",
+    "snabbdom",
+    "virtual-dom",
     "typescript"
   ],
   "homepage": "https://github.com/eldarlabs/cycle-ui#readme"

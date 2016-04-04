@@ -10,8 +10,7 @@ A Cycle.js HTML component library.
 
 ##[Demonstration Site](http://eldarlabs.github.io/cycle-ui-typescript-webpack/)
 
-An **experimental work in progress** conversion of react-toolbox components to
-Cycle.js components. Currently using the Material Design styles from react-toolbox that are written with PostCSS. Future work may define an interface for interchangeable styles.
+An **experimental work in progress** conversion of the Material Design react-toolbox components to Cycle.js components. The styles from react-toolbox  are written with PostCSS. Future work may define an interface for interchangeable styles.
 
 How to use
 ----------
@@ -43,6 +42,8 @@ Related projects
 - [cycle-ui-typescript-webpack](https://github.com/eldarlabs/cycle-ui-typescript-webpack) - Cycle.js Starter Project for using Cycle-UI, TypeScript and WebPack.
 - [Cycle.js](http://cycle.js.org) - required to use the Cycle-UI components. Declarative programming with data flow.
 - [React Toolbox Components](http://react-toolbox.com/#/components) - uses the PostCSS/SASS styles from this library.
+- [Snabbdom](https://github.com/paldepind/snabbdom) - a virtual DOM library
+- [cycle-snabbdom](https://github.com/TylorS/cycle-snabbdom/) - a Cycle.js DOM library that uses the Snabbdom virtual DOM.
 - [RxJS](http://reactivex.io/intro.html) - Functional, Reactive, Observable streams of data that power Cycle.js
 - [TypeScript](http://www.typescriptlang.org/Handbook) - Types, Interfaces, static checking and other good stuff.
 - [Typings](https://github.com/typings/typings) - Trying to make TypeScript Type definitions easier to deal with.
