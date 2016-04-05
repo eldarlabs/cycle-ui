@@ -3,13 +3,12 @@ const { div, input, label, span } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 import { Radio } from './Radio';
 const style = require('react-toolbox/lib/radio/style');
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
 const combineLatestObj = require('rx-combine-latest-obj');
-import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInterfaces';
 
 // TODO: check these props
-export interface RadioButtonProps {
+export interface RadioButtonProps extends CycleUiComponentProps {
   checked?: boolean;
   className?: string;
   disabled?: boolean;
@@ -18,19 +17,21 @@ export interface RadioButtonProps {
   value?: any;
 };
 
+const RadioButtonDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  checked: false,
+  className: '',
+  disabled: false,
+};
+
 export interface RadioButton extends CycleDomComponent {
   value$: Observable<string>;
 }
 
 export function RadioButton(sources: any, props?: RadioButtonProps): RadioButton {
-  const props$: Observable<RadioButtonProps> = defaultProps(props, {
-    checked: false,
-    className: '',
-    disabled: false,
-  });
-
-  // Enforce isolation for now, unless I find a better way to localize selects
-  return isolate(makeRadioButton)(sources, props$);
+  return componentFactory<RadioButtonProps>(RadioButtonFactory, RadioButtonDefaultProps, sources,
+    props);
 }
 
 function intent(DOM: any) {
@@ -95,7 +96,7 @@ function view(sources: any, state$: any) {
   });
 }
 
-function makeRadioButton(sources: any, props$: Observable<RadioButtonProps>): RadioButton {
+function RadioButtonFactory(sources: any, props$: Observable<RadioButtonProps>): RadioButton {
   const { DOM } = sources;
 
   const actions = intent(DOM);

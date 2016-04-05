@@ -3,7 +3,7 @@
   "rules": {
     "curly": true,
     "eofline": false,
-    "align": [true, "parameters"],
+    "align": [false, "parameters"],
     "class-name": true,
     "indent": [true, "spaces"],
     "max-line-length": [true, 100],

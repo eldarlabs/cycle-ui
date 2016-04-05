@@ -1,31 +1,32 @@
 import { Observable } from 'rx';
 const { div } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/radio/style');
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
 //import Ripple from '../ripple';
-import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInterfaces';
 
 // TODO: check these props
-export interface RadioProps {
+export interface RadioProps extends CycleUiComponentProps {
   checked?: boolean;
   className?: string;
   disabled?: boolean;
 };
 
-export function Radio(sources: any, props?: RadioProps): CycleDomComponent {
-  //TODO: make defaults or use parents?
-  const props$: Observable<RadioProps> = defaultProps(props, {
-    checked: false,
-    className: '',
-    disabled: false,
-  });
+//TODO: make defaults or use parents?
+const RadioDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  checked: false,
+  className: '',
+  disabled: false,
+};
 
-  // Enforce isolation for now, otherwise Inputs all show the same data
-  return isolate(makeRadio)(sources, props$);
+export function Radio(sources: any, props?: RadioProps): CycleDomComponent {
+  return componentFactory<RadioProps>(RadioFactory, RadioDefaultProps, sources,
+    props);
 }
 
-function makeRadio(sources: any, props$: Observable<RadioProps>): CycleDomComponent {
+function RadioFactory(sources: any, props$: Observable<RadioProps>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const className = style[props.checked ? 'radio-checked' : 'radio'];

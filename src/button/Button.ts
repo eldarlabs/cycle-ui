@@ -1,15 +1,15 @@
 import { Observable } from 'rx';
 const { h, span } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/button/style');
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
 //import FontIcon from '../font_icon';
 //import Ripple from '../ripple';
-import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
+  from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
 // TODO: check these props
-export interface ButtonProps {
+export interface ButtonProps extends CycleUiComponentProps {
   checked?: boolean;
   className?: string;
   disabled?: boolean;
@@ -27,25 +27,27 @@ export interface ButtonProps {
   type?: string;
 };
 
+const ButtonDefaultProps = {
+  // Enforce isolation for now, otherwise Buttons may interact
+  isolate: true,
+  accent: false,
+  className: '',
+  flat: false,
+  floating: false,
+  mini: false,
+  neutral: true,
+  primary: false,
+  raised: false
+};
+
 export function Button(sources: any, props?: ButtonProps, children?: Array<CycleComponent>):
     CycleDomComponent {
-  const props$: Observable<ButtonProps> = defaultProps(props, {
-    accent: false,
-    className: '',
-    flat: false,
-    floating: false,
-    mini: false,
-    neutral: true,
-    primary: false,
-    raised: false
-  });
-
-  // Enforce isolation for now, otherwise Buttons may interact
-  return isolate(makeButton)(sources, props$, children);
+  return componentFactory<ButtonProps>(ButtonFactory, ButtonDefaultProps, sources,
+    props, children);
 }
 
-function makeButton(sources: any, props$: Observable<ButtonProps>, children: Array<CycleComponent>):
-                    CycleDomComponent {
+export function ButtonFactory(sources: any, props$: Observable<ButtonProps>,
+    children: Array<CycleComponent>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const element = props.href ? 'a' : 'button';

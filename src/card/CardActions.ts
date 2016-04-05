@@ -1,27 +1,29 @@
 import { Observable } from 'rx';
 const { div } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/card/style');
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
-import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
+  from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
-export interface CardActionsProps {
+export interface CardActionsProps extends CycleUiComponentProps {
   className?: string;
   children?: Array<CycleComponent>;
 };
 
-export function CardActions(sources: any, props?: CardActionsProps,
-                            children?: Array<CycleComponent>): CycleDomComponent {
-  const props$: Observable<CardActionsProps> = defaultProps(props, {
-    className: '',
-  });
+const CardActionsDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  className: '',
+};
 
-  // TODO: isolation?
-  return isolate(makeCardActions)(sources, props$, children);
+export function CardActions(sources: any, props?: CardActionsProps,
+    children?: Array<CycleComponent>): CycleDomComponent {
+  return componentFactory<CardActionsProps>(CardActionsFactory, CardActionsDefaultProps, sources,
+    props, children);
 }
 
-function makeCardActions(sources: any, props$: Observable<CardActionsProps>,
+export function CardActionsFactory(sources: any, props$: Observable<CardActionsProps>,
                          children: Array<CycleComponent>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 

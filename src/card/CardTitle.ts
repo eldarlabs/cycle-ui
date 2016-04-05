@@ -1,33 +1,34 @@
 import { Observable } from 'rx';
 const { div, h5, p } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/card/style');
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
-import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
+  from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 //import { concat } from 'lodash';
 const { concat } = require('lodash');
 //import { Avatar } from '../avatar';
 
-export interface CardTitleProps {
+export interface CardTitleProps extends CycleUiComponentProps {
   avatar?: string | CycleComponent;
   className?: string;
   subtitle?: string | CycleComponent;
   title?: string | CycleComponent;
 };
 
-export function CardTitle(sources: any, props?: CardTitleProps,
-                          children?: string | Array<CycleComponent> | CycleComponent):
-                          CycleDomComponent {
-  const props$: Observable<CardTitleProps> = defaultProps(props, {
-    className: '',
-  });
+const CardTitleDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  className: '',
+};
 
-  // TODO: isolation?
-  return isolate(makeCardTitle)(sources, props$, children);
+export function CardTitle(sources: any, props?: CardTitleProps,
+    children?: string | Array<CycleComponent>): CycleDomComponent {
+  return componentFactory<CardTitleProps>(CardTitleFactory, CardTitleDefaultProps, sources,
+    props, children);
 }
 
-function makeCardTitle(sources: any, props$: Observable<CardTitleProps>,
+export function CardTitleFactory(sources: any, props$: Observable<CardTitleProps>,
                        children: string | Array<CycleComponent> | CycleComponent):
                        CycleDomComponent {
   const vtree$ = props$.map( (props) => {

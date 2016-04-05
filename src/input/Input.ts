@@ -3,11 +3,10 @@ const { h, div, span, label } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 // import FontIcon from '../font_icon';
 const style = require('react-toolbox/lib/input/style');
-import { defaultProps } from '../helpers/defaultProps';
-import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
-const isolate = require('@cycle/isolate');
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInterfaces';
 
-export interface InputProps {
+export interface InputProps extends CycleUiComponentProps {
   label?: string;
   floating?: boolean;
   values?: any;
@@ -36,22 +35,23 @@ export interface InputProps {
   step?: number;
 }
 
+const InputDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  className: '',
+  disabled: false,
+  floating: true,
+  multiline: false,
+  required: false,
+  type: 'text',
+};
+
 export function Input(sources: any, props?: InputProps): CycleDomComponent {
-
-  const props$: Observable<InputProps> = defaultProps(props, {
-    className: '',
-    disabled: false,
-    floating: true,
-    multiline: false,
-    required: false,
-    type: 'text'
-  });
-
-  // Enforce isolation for now, otherwise Inputs all show the same data
-  return isolate(makeImport)(sources, props$);
+  return componentFactory<InputProps>(InputFactory, InputDefaultProps, sources,
+    props);
 }
 
-function makeImport(sources: any, props$: Observable<InputProps>): CycleDomComponent {
+export function InputFactory(sources: any, props$: Observable<InputProps>): CycleDomComponent {
   const { DOM } = sources;
 
   //TODO: make a helper

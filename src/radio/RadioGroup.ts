@@ -5,36 +5,37 @@ import { RadioButton, RadioButtonProps } from './RadioButton';
 /* tslint:disable: no-unused-variable */
 const style = require('react-toolbox/lib/radio/style');
 /* tslint:enable */
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
-import { CycleDomComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
+  from '../helpers/cycleDomInterfaces';
 
 // TODO: check these props
-export interface RadioGroupProps {
+export interface RadioGroupProps extends CycleUiComponentProps {
   className?: string;
   disabled?: boolean;
   name?: string;
   value?: any;
 };
 
-export function RadioGroup(sources: any, props?: RadioGroupProps,
-                           childrenProps?: Array<RadioButtonProps>):
-                           CycleDomComponent {
-  const props$: Observable<RadioGroupProps> = defaultProps(props, {
-    className: '',
-    disabled: false,
-  });
+const RadioGroupDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  className: '',
+  disabled: false,
+};
 
-  // Enforce isolation for now, otherwise Inputs all show the same data
-  return isolate(makeRadioGroup)(sources, props$, childrenProps);
+export function RadioGroup(sources: any, props?: RadioGroupProps,
+    children?: Array<CycleComponent>): CycleDomComponent {
+  return componentFactory<RadioGroupProps>(RadioGroupFactory, RadioGroupDefaultProps, sources,
+    props, children);
 }
 
-function makeRadioGroup(sources: any, props$: Observable<RadioGroupProps>,
-                        childrenProps: Array<RadioButtonProps>): CycleDomComponent {
+function RadioGroupFactory(sources: any, props$: Observable<RadioGroupProps>,
+                        children: Array<RadioButton>): CycleDomComponent {
   const childrenDOMs: any[] = [];
   const childrenValues: Observable<any>[] = [];
-  for (let childProps of childrenProps) {
-    let childRadio = RadioButton(sources, childProps);
+  //TODO: allow other kinds of children?
+  for (let childRadio of children) {
     // TODO: maybe remove RadioButton interface if I can make value$ compile using CycleDomComponent
     // interface
     childrenValues.push(childRadio.value$);

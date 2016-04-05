@@ -11,3 +11,7 @@ export interface CycleDomComponent {
 //TODO: Investigate more if this can be tightened to better types
 export interface CycleComponent {
 }
+
+export interface CycleUiComponentProps {
+  isolate?: boolean;
+}

@@ -1,29 +1,31 @@
 import { Observable } from 'rx';
 const { div } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/card/style');
-import { defaultProps } from '../helpers/defaultProps';
-const isolate = require('@cycle/isolate');
-import { CycleDomComponent, CycleComponent } from '../helpers/cycleDomInterfaces';
+import { componentFactory } from '../helpers/componentFactory';
+import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
+  from '../helpers/cycleDomInterfaces';
 import * as classNames from 'classnames';
 
-export interface CardProps {
+export interface CardProps extends CycleUiComponentProps {
   className?: string;
   raised?: boolean;
 };
 
+const CardDefaultProps = {
+  // Enforce isolation for now
+  isolate: true,
+  className: '',
+  raised: false,
+};
+
 export function Card(sources: any, props?: CardProps, children?: Array<CycleComponent>):
     CycleDomComponent {
-  const props$: Observable<CardProps> = defaultProps(props, {
-    className: '',
-    raised: false
-  });
-
-  // TODO: isolation?
-  return isolate(makeCard)(sources, props$, children);
+  return componentFactory<CardProps>(CardFactory, CardDefaultProps, sources,
+    props, children);
 }
 
-function makeCard(sources: any, props$: Observable<CardProps>, children: Array<CycleComponent>):
-    CycleDomComponent {
+export function CardFactory(sources: any, props$: Observable<CardProps>,
+    children: Array<CycleComponent>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
     const className = classNames(style.card, {
