@@ -10,7 +10,6 @@ export interface InputProps extends CycleUiComponentProps {
   label?: string;
   floating?: boolean;
   values?: any;
-  className?: string;
   disabled?: boolean;
   invalid?: boolean;
   error?: string;

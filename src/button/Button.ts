@@ -11,7 +11,6 @@ import * as classNames from 'classnames';
 // TODO: check these props
 export interface ButtonProps extends CycleUiComponentProps {
   checked?: boolean;
-  className?: string;
   disabled?: boolean;
   accent?: boolean;
   flat?: boolean;

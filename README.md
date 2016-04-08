@@ -15,7 +15,7 @@ An **experimental work in progress** conversion of the Material Design react-too
 How to use
 ----------
 
-The easiest way to get started is to clone the [cycle-ui-typescript-webpack](https://github.com/eldarlabs/cycle-ui-typescript-webpack) starter project. This includes a Cycle-UI kitchen sink demo you can browse at the [demonstration site](http://eldarlabs.github.io/cycle-ui-typescript-webpack/). Start modifying the starter project or get ideas for your own project.
+The easiest way to get started is to clone the [cycle-ui-typescript-webpack](https://github.com/eldarlabs/cycle-ui-typescript-webpack) starter project. It includes a Cycle-UI kitchen sink demo ([demonstration site](http://eldarlabs.github.io/cycle-ui-typescript-webpack/)). Start modifying the starter project or get some ideas for how to use Cycle-UI in your own project.
 
 Note: I want to bring a proposal to Cycle-DOM to allow removal of the .DOM boilerplate.
 

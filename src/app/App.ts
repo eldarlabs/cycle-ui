@@ -6,7 +6,6 @@ import { componentFactory } from '../helpers/componentFactory';
 import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInterfaces';
 
 export interface AppProps extends CycleUiComponentProps {
-  className?: string;
 }
 
 export const AppDefaultProps = {

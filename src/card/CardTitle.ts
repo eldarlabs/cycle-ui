@@ -11,7 +11,6 @@ const { concat } = require('lodash');
 
 export interface CardTitleProps extends CycleUiComponentProps {
   avatar?: string | CycleComponent;
-  className?: string;
   subtitle?: string | CycleComponent;
   title?: string | CycleComponent;
 };

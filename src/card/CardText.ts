@@ -7,7 +7,6 @@ import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
 import * as classNames from 'classnames';
 
 export interface CardTextProps extends CycleUiComponentProps {
-  className?: string;
 };
 
 const CardTextDefaultProps = {

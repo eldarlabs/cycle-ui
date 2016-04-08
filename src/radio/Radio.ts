@@ -1,4 +1,5 @@
 import { Observable } from 'rx';
+import * as classNames from 'classnames';
 const { div } = require('cycle-snabbdom');
 const style = require('react-toolbox/lib/radio/style');
 //import Ripple from '../ripple';
@@ -8,7 +9,6 @@ import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInt
 // TODO: check these props
 export interface RadioProps extends CycleUiComponentProps {
   checked?: boolean;
-  className?: string;
   disabled?: boolean;
 };
 
@@ -29,7 +29,7 @@ export function Radio(sources: any, props?: RadioProps): CycleDomComponent {
 function RadioFactory(sources: any, props$: Observable<RadioProps>): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
-    const className = style[props.checked ? 'radio-checked' : 'radio'];
+    const className = classNames(style[props.checked ? 'radio-checked' : 'radio'], props.className);
 
     //TODO: make an equivalent of data-react-toolbox='radio' for div?
     return (

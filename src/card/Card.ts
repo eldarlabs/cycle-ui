@@ -7,7 +7,6 @@ import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
 import * as classNames from 'classnames';
 
 export interface CardProps extends CycleUiComponentProps {
-  className?: string;
   raised?: boolean;
 };
 

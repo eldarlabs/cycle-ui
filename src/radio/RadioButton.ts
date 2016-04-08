@@ -10,7 +10,6 @@ import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInt
 // TODO: check these props
 export interface RadioButtonProps extends CycleUiComponentProps {
   checked?: boolean;
-  className?: string;
   disabled?: boolean;
   readonly?: boolean;
   label?: string;

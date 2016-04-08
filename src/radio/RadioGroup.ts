@@ -11,7 +11,6 @@ import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
 
 // TODO: check these props
 export interface RadioGroupProps extends CycleUiComponentProps {
-  className?: string;
   disabled?: boolean;
   name?: string;
   value?: any;

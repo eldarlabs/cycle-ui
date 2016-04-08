@@ -14,4 +14,6 @@ export interface CycleComponent {
 
 export interface CycleUiComponentProps {
   isolate?: boolean;
+  className?: string;
+  style?: string;
 }
