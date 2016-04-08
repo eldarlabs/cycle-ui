@@ -35,6 +35,13 @@ Note: I want to bring a proposal to Cycle-DOM to allow removal of the .DOM boile
     ])
 
 
+Entitlement
+-----------
+This project is open source so team members can share knowledge and learn from the community. Using this software does not entitle you to any support or right to demand features. See below for how to contribute.
+
+Feedback
+--------
+Let is know of any [Issues](https://github.com/eldarlabs/cycle-ui/issues). Pull requests will be considered.
 
 Related projects
 ----------------
