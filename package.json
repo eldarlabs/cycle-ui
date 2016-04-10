@@ -51,7 +51,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "condition-circle": "1.2.0",
-    "ghooks": "1.0.3",
+    "ghooks": "1.1.0",
     "mocha": "^2.4.5",
     "semantic-release": "^4.3.5",
     "typescript": "^1.8.7",
