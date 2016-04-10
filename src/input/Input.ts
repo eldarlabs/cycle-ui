@@ -86,7 +86,7 @@ export function InputFactory(sources: any, props$: Observable<InputProps>): Cycl
     // TODO: split input into a new function
     // TODO: make an equivalent of data-react-toolbox='input' for div?
     return (
-      div( { props: { className: divClassName } }, [
+      div( { props: { className: divClassName }, attrs: { 'data-cycle-ui': 'input' } }, [
         h(props.multiline ? 'textarea' : 'input', {
           props: {
             className,

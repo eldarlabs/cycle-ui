@@ -60,9 +60,8 @@ export function ButtonFactory(sources: any, props$: Observable<ButtonProps>,
       [style.inverse]: props.inverse
     }, props.className);
 
-    //TODO: make an equivalent of data-react-toolbox='radio' for div?
     return (
-      h(element, { props: { className } }, [
+      h(element, { props: { className }, attrs: { 'data-cycle-ui': 'button' } }, [
         //icon ? <FontIcon className={style.icon} value={icon}/> : null,
         //label: props.label
       // ,

@@ -65,10 +65,9 @@ function view(sources: any, state$: any) {
     const inputClassName = classNames('radioInput', style.input);
 
     //TODO: split input into a new function
-    //TODO: make an equivalent of data-react-toolbox='radio-button' for div?
     return (
       div([
-        label( { props: { className } }, [
+        label( { props: { className }, attrs: { 'data-cycle-ui': 'radio-button' } }, [
           input( { props: {
             className: inputClassName,
             //TODO: which version?

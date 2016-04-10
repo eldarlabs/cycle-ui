@@ -31,9 +31,8 @@ function RadioFactory(sources: any, props$: Observable<RadioProps>): CycleDomCom
 
     const className = classNames(style[props.checked ? 'radio-checked' : 'radio'], props.className);
 
-    //TODO: make an equivalent of data-react-toolbox='radio' for div?
     return (
-      div( { props: { className } } )
+      div( { props: { className }, attrs: { 'data-cycle-ui': 'radio' } } )
     );
   });
 

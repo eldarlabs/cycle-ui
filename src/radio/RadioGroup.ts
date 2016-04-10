@@ -3,8 +3,7 @@ const { div } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 import { RadioButton, RadioButtonProps } from './RadioButton';
 /* tslint:disable: no-unused-variable */
-const style = require('react-toolbox/lib/radio/style');
-/* tslint:enable */
+const style = require('react-toolbox/lib/radio/style'); /* tslint:enable */
 import { componentFactory } from '../helpers/componentFactory';
 import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
   from '../helpers/cycleDomInterfaces';
@@ -52,7 +51,7 @@ function RadioGroupFactory(sources: any, props$: Observable<RadioGroupProps>,
     const className = classNames('radioGroup', props.className);
 
     return (
-      div( { props: { className } },
+      div( { props: { className }, attrs: { 'data-cycle-ui': 'radio-group' } },
         childrenDOMs
       )
     );
