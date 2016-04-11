@@ -16,7 +16,7 @@ export interface RadioButtonProps extends CycleUiComponentProps {
   value?: any;
 };
 
-const RadioButtonDefaultProps = {
+const RadioButtonDefaultProps: RadioButtonProps = {
   // Enforce isolation for now
   isolate: true,
   checked: false,

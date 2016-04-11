@@ -15,7 +15,7 @@ export interface RadioGroupProps extends CycleUiComponentProps {
   value?: any;
 };
 
-const RadioGroupDefaultProps = {
+const RadioGroupDefaultProps: RadioGroupProps = {
   // Enforce isolation for now
   isolate: true,
   className: '',

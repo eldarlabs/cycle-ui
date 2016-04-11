@@ -8,7 +8,7 @@ import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInt
 export interface AppProps extends CycleUiComponentProps {
 }
 
-export const AppDefaultProps = {
+export const AppDefaultProps: AppProps = {
   isolate: false,
   className: ''
 };

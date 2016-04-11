@@ -10,7 +10,7 @@ export interface CardActionsProps extends CycleUiComponentProps {
   children?: Array<CycleComponent>;
 };
 
-const CardActionsDefaultProps = {
+const CardActionsDefaultProps: CardActionsProps = {
   // Enforce isolation for now
   isolate: true,
   className: '',

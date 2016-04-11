@@ -13,7 +13,7 @@ export interface RadioProps extends CycleUiComponentProps {
 };
 
 //TODO: make defaults or use parents?
-const RadioDefaultProps = {
+const RadioDefaultProps: RadioProps = {
   // Enforce isolation for now
   isolate: true,
   checked: false,

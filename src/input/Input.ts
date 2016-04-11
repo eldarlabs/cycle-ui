@@ -34,7 +34,7 @@ export interface InputProps extends CycleUiComponentProps {
   step?: number;
 }
 
-const InputDefaultProps = {
+const InputDefaultProps: InputProps = {
   // Enforce isolation for now
   isolate: true,
   className: '',
@@ -84,7 +84,6 @@ export function InputFactory(sources: any, props$: Observable<InputProps>): Cycl
     }, props.className);
 
     // TODO: split input into a new function
-    // TODO: make an equivalent of data-react-toolbox='input' for div?
     return (
       div( { props: { className: divClassName }, attrs: { 'data-cycle-ui': 'input' } }, [
         h(props.multiline ? 'textarea' : 'input', {

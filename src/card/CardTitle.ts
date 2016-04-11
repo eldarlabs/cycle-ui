@@ -15,7 +15,7 @@ export interface CardTitleProps extends CycleUiComponentProps {
   title?: string | CycleComponent;
 };
 
-const CardTitleDefaultProps = {
+const CardTitleDefaultProps: CardTitleProps = {
   // Enforce isolation for now
   isolate: true,
   className: '',

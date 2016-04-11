@@ -9,7 +9,7 @@ import * as classNames from 'classnames';
 export interface CardTextProps extends CycleUiComponentProps {
 };
 
-const CardTextDefaultProps = {
+const CardTextDefaultProps: CardTextProps = {
   // Enforce isolation for now
   isolate: true,
   className: '',

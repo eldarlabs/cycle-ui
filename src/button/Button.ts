@@ -26,7 +26,7 @@ export interface ButtonProps extends CycleUiComponentProps {
   type?: string;
 };
 
-const ButtonDefaultProps = {
+const ButtonDefaultProps: ButtonProps = {
   // Enforce isolation for now, otherwise Buttons may interact
   isolate: true,
   accent: false,
