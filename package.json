@@ -45,7 +45,7 @@
     "@cycle/core": "^6.0.0",
     "@cycle/isolate": "^1.2.0",
     "cycle-snabbdom": "^1.2.1",
-    "react-toolbox": "0.14.0",
+    "react-toolbox": "0.16.2",
     "rx": "^4.1.0"
   },
   "devDependencies": {
