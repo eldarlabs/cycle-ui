@@ -10,6 +10,7 @@ export interface CycleDomComponent {
 // basically means it can be anything?
 //TODO: Investigate more if this can be tightened to better types
 export interface CycleComponent {
+  DOM?: Observable<any>;
 }
 
 export interface CycleUiComponentProps {

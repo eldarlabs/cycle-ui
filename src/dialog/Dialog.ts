@@ -3,14 +3,16 @@ const { div, h6, nav, section, p } = require('cycle-snabbdom');
 import * as classNames from 'classnames';
 const style = require('react-toolbox/lib/dialog/style');
 import { componentFactory } from '../helpers/componentFactory';
-import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInterfaces';
+import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
+  from '../helpers/cycleDomInterfaces';
 import { Overlay } from '../overlay';
 import { Button } from '../button';
+const { concat } = require('lodash');
 
 export interface DialogProps extends CycleUiComponentProps {
   active?: boolean;
   invisible?: boolean;
-  actions?: any[];
+  actions?: CycleComponent[];
   title?: string;
   type?: string;
 }
@@ -23,8 +25,8 @@ export const DialogDefaultProps: DialogProps = {
   type: 'normal',
 };
 
-export function Dialog(props?: DialogProps, children?: any[]): CycleDomComponent;
-export function Dialog(children?: any[]): CycleDomComponent;
+export function Dialog(props?: DialogProps, children?: CycleComponent[]): CycleDomComponent;
+export function Dialog(children?: CycleComponent[]): CycleDomComponent;
 
 export function Dialog(propsOrChildren: any, children?: any) {
   return componentFactory<DialogProps>(DialogFactory, DialogDefaultProps,
@@ -32,14 +34,16 @@ export function Dialog(propsOrChildren: any, children?: any) {
 }
 
 export function DialogFactory(props$: $<DialogProps>,
-    children?: any[]): CycleDomComponent {
+    children?: CycleComponent[]): CycleDomComponent {
   const vtree$ = props$.map( (props) => {
 
-    const actions: any[] = props.actions;
-    // props.actions.map((action, idx) => {
-    //   const className = ClassNames(style.button, {[action.className]: action.className});
-    //   return Button key={idx} {...action} className={className} />;
-    // });
+    const actionsDOM = props.actions.map((action) => {
+      //const className = ClassNames(style.button, {[action.className]: action.className});
+      if (typeof action.DOM === 'undefined') {
+        return action;
+      }
+      return action.DOM;
+    });
 
     const className = classNames([ style.root, style[props.type] ], {
       [style.active]: props.active
@@ -48,13 +52,12 @@ export function DialogFactory(props$: $<DialogProps>,
     return (
       Overlay( { active: props.active }, [
         div( { props: { className }, attrs: { 'data-cycle-ui': 'dialog' } }, [
-          section( { props: { role: 'body', className: style.body } }, [
+          section( { props: { role: 'body', className: style.body } }, concat([],
             props.title && h6( { props: { className: style.title } }, props.title),
-            //children
-            p('hi')
-          ]),
+            children
+          )),
           nav( { props: { role: 'navigation', className: style.navigation } },
-            actions
+            actionsDOM
           )
         ])
       ]).DOM

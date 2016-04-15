@@ -62,7 +62,7 @@ export function CardTitleFactory(sources: any, props$: Observable<CardTitleProps
 
     return (
       div( { props: { className } }, [
-        div(concat(
+        div(concat([],
           titleDOM,
           childrenAsStringDOM,
           subtitleDOM,
