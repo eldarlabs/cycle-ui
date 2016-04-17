@@ -1,12 +1,11 @@
 import { Observable as $ } from 'rx';
-const { div, h6, nav, section, p } = require('cycle-snabbdom');
+const { h, h6, nav, section } = require('cycle-snabbdom');
+const dialogPolyfill = require('dialog-polyfill/dialog-polyfill.js');
 import * as classNames from 'classnames';
-const style = require('react-toolbox/lib/dialog/style');
+const style = require('./style');
 import { componentFactory } from '../helpers/componentFactory';
 import { CycleDomComponent, CycleComponent, CycleUiComponentProps }
   from '../helpers/cycleDomInterfaces';
-import { Overlay } from '../overlay';
-import { Button } from '../button';
 const { concat } = require('lodash');
 
 export interface DialogProps extends CycleUiComponentProps {
@@ -49,10 +48,25 @@ export function DialogFactory(props$: $<DialogProps>,
       [style.active]: props.active
     }, props.className);
 
+    const insert = (vnode: any) => {
+      const dialog: any = document.querySelector('dialog');
+      dialogPolyfill.registerDialog(dialog);
+      if (props.active) {
+        dialog.showModal();
+      } else {
+        const overlay: any = document.querySelector('._dialog_overlay');
+        if (overlay != null) {
+          console.log('removing dialog overlay');
+          overlay.parentNode.removeChild(overlay);
+        }
+      }
+    };
+
     return (
-      Overlay( { active: props.active }, [
-        div( { props: { className }, attrs: { 'data-cycle-ui': 'dialog' } }, [
-          section( { props: { role: 'body', className: style.body } }, concat([],
+//      Overlay( { active: props.active }, [
+        h('dialog', {hook: {insert}, props: { className }, attrs: { 'data-cycle-ui': 'dialog' } }, [
+          section( { props: { className: style.body },
+            attrs: { role: 'body' } }, concat([],
             props.title && h6( { props: { className: style.title } }, props.title),
             children
           )),
@@ -60,7 +74,7 @@ export function DialogFactory(props$: $<DialogProps>,
             actionsDOM
           )
         ])
-      ]).DOM
+//      ]).DOM
     );
   });
 

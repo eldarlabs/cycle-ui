@@ -23,6 +23,7 @@
     "prepublish": "typings install && tsc",
     "test": "mocha src/index.test.js",
     "testw": "mocha src/index.test.js -w",
+    "sass": "cpx './src/**/*.scss' ./lib",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "release": {
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "dialog-polyfill": "0.4.3",
     "lodash": "^4.6.0",
     "rx-combine-latest-obj": "^1.0.2"
   },
@@ -51,6 +53,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "condition-circle": "1.2.0",
+    "cpx": "^1.3.1",
     "ghooks": "1.0.3",
     "mocha": "^2.4.5",
     "semantic-release": "^4.3.5",
