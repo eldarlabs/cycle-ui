@@ -1,4 +1,4 @@
-const isolate = require('@cycle/isolate');
+const isolateLocal = require('@cycle/isolate');
 import { Observable } from 'rx';
 import { getComponentParams } from './componentParams';
 import { CycleUiComponentProps, CycleComponent } from './cycleDomInterfaces';
@@ -9,7 +9,11 @@ export function componentFactory<T extends CycleUiComponentProps>(factory: any,
   const params = getComponentParams<T>(defaults, propsOrChildren, children);
 
   if (params.props.isolate) {
-    factory = isolate(factory);
+  //  if (typeof sources === 'undefined') {
+      factory = isolateLocal(factory);
+  //   } else {
+  //     factory = sources.isolate(factory);
+  //   }
   }
 
   const props$ = Observable.just(params.props);

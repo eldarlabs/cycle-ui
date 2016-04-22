@@ -4,7 +4,6 @@ import * as classNames from 'classnames';
 const style = require('react-toolbox/lib/overlay/style');
 import { componentFactory } from '../helpers/componentFactory';
 import { CycleDomComponent, CycleUiComponentProps } from '../helpers/cycleDomInterfaces';
-const { concat } = require('lodash');
 
 export interface OverlayProps extends CycleUiComponentProps {
   active?: boolean;
@@ -41,6 +40,14 @@ export function OverlayFactory(props$: $<OverlayProps>,
         children
       )
     ]);
+    // return (
+    //   h('dialog', {hook: {insert}, props: { className } }, [
+    //    div( { props: { className } }, [
+    //   div( { props: { className: style.overlay } },
+    //     children
+    //   )
+    // ]);
+
   });
 
   return {

@@ -1,0 +1,30 @@
+@import "../../node_modules/react-toolbox/lib/base";
+@import "../../node_modules/react-toolbox/lib/drawer/config";
+@import "../../node_modules/react-toolbox/lib/drawer/style";
+//@import "../../node_modules/dialog-polyfill/dialog-polyfill.css";
+
+dialog[open] {
+  display: block;
+  position: fixed;
+  z-index: 10;
+}
+
+dialog + :global(.backdrop) {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(0,0,0,0.1);
+}
+
+/* for small devices, modal dialogs go full-screen */
+@media screen and (max-width: 540px) {
+  dialog[_polyfill_modal] {  /* TODO: implement */
+    top: 0;
+    width: auto;
+    margin: 1em;
+  }
+}
+
+:global(._dialog_overlay) {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+}
